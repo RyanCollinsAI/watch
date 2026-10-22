@@ -1,0 +1,17 @@
+# OS / editor / tooling
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+.pytest_cache/
+
+# machine-specific notes the agent reads next to SKILL.md
+LOCAL.md
+
+# secrets and caches
+.env
+*.env
