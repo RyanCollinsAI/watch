@@ -125,9 +125,9 @@ pytest -q
 
 Tests use generated video clips and make no network calls.
 
-## Credit
+## About
 
-Added in this fork: contact sheets, spoken-cue and gap-fill frames, near-black frame drop, chapters and pacing, media and transcript cache, faster-whisper (GPU or CPU), the audio timeline, on-screen text, and a flat install-by-clone layout.
+Includes: contact sheets, spoken-cue and gap-fill frames, near-black frame drop, chapters and pacing, media and transcript cache, faster-whisper (GPU or CPU), the audio timeline, on-screen text, and a flat install-by-clone layout.
 
 MIT licensed, see [LICENSE](LICENSE).
 Made by [Ryan Collins](https://github.com/RyanCollinsAI).
