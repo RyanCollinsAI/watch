@@ -127,9 +127,6 @@ Tests use generated video clips and make no network calls.
 
 ## Credit
 
-This is a fork of [bradautomates/claude-video](https://github.com/bradautomates/claude-video) (MIT) by Bradley Bonanno, synced to upstream 0.3.2.
-Thank you to Bradley for the original, and to the fork authors whose ideas were ported: [abe238/claude-video-plus](https://github.com/abe238/claude-video-plus) (process timeouts, H.264-first downloads, speaker labels in captions).
-
 Added in this fork: contact sheets, spoken-cue and gap-fill frames, near-black frame drop, chapters and pacing, media and transcript cache, faster-whisper (GPU or CPU), the audio timeline, on-screen text, and a flat install-by-clone layout.
 
 MIT licensed, see [LICENSE](LICENSE).
