@@ -225,7 +225,11 @@ def section(x: np.ndarray, a: float, b: float) -> np.ndarray:
 def beat_tracker():
     from beat_this.inference import Audio2Beats
 
-    return Audio2Beats(device="cuda", dbn=False)  # dbn needs madmom, not installed here
+    try:
+        return Audio2Beats(device="cuda", dbn=False)  # dbn needs madmom, not installed here
+    except Exception as exc:  # noqa: BLE001 - its checkpoint host is third-party; songs and effects still work without BPM
+        print(f"[watch] BPM unavailable: {type(exc).__name__}: {exc}", file=sys.stderr)
+        return None
 
 
 def bpm(stereo: np.ndarray) -> int | None:
@@ -233,7 +237,10 @@ def bpm(stereo: np.ndarray) -> int | None:
     mono = stereo.mean(0)[: HQ_SR * 60]
     if len(mono) < HQ_SR * 4:
         return None
-    beats, _ = beat_tracker()(mono, HQ_SR)
+    tracker = beat_tracker()
+    if tracker is None:
+        return None
+    beats, _ = tracker(mono, HQ_SR)
     return round(60 / float(np.median(np.diff(beats)))) if len(beats) >= 4 else None
 
 
