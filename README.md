@@ -72,6 +72,7 @@ If there are none, it uses the backend you pick in `~/.config/watch/.env`:
 
 | `WATCH_WHISPER_BACKEND` | What it is |
 |---|---|
+| `auto` (default) | A Groq or OpenAI key if you set one, else local faster-whisper if it is installed. |
 | `fasterwhisper` | Local. `pip install faster-whisper`. Uses an NVIDIA GPU if there is one (model `large-v3-turbo`), else the CPU (model `small`, slower). Set `WATCH_FW_MODEL` to change the model. With a GPU, captions are skipped because local Whisper is better than auto captions. |
 | `whisperx` | Local, CPU. Run `setup.py --install-whisperx` once. |
 | `groq` / `openai` | Cloud. Needs `GROQ_API_KEY` or `OPENAI_API_KEY` in the same file. |

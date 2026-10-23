@@ -7,6 +7,7 @@ then Reads each frame path to see the video.
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import math
 import os
@@ -232,6 +233,9 @@ def main() -> int:
     validate_controls(args.resolution, max_frames, start_sec, end_sec, args.fps)
     cue_timestamps = parse_timestamps(args.timestamps)
     backend_choice = "none" if args.no_whisper else args.whisper or config["whisper_backend"]
+    # A fresh install has no .env: with no cloud key, auto means local faster-whisper when it is installed.
+    if backend_choice == "auto" and not load_api_key()[1] and importlib.util.find_spec("faster_whisper"):
+        backend_choice = "fasterwhisper"
     cookies_file = args.cookies if args.cookies is not None else (None if args.cookies_from_browser else config["cookies_file"])
     cookies_browser = args.cookies_from_browser if args.cookies_from_browser is not None else (None if args.cookies else config["cookies_from_browser"])
     auth_args(cookies_file, cookies_browser)  # Validate even before starting network work.
